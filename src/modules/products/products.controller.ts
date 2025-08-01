@@ -34,6 +34,7 @@ export class ProductsController {
     return this.productsService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -43,6 +44,7 @@ export class ProductsController {
     return this.productsService.update(id, dto, req.user.userId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string, @Request() req: any) {
     return this.productsService.remove(id, req.user.userId);
